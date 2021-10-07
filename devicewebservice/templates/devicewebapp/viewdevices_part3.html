@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Devices</title>
+    <style>
+       *{margin: 0px; padding: 0px;}
+       .grid-container{
+           border: 1px solid blue;
+           padding: 2px;
+           display: grid;
+           grid-template-columns: repeat(3,1fr);
+           grid-template-rows: auto;
+           grid-gap: 1px;
+           width: 90%;
+           margin-left: auto;
+           margin-right: auto;
+       }
+       .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+       }
+       .grid-items {
+           border: 1px solid red;
+       }
+       .grid-item1{
+           grid-column: 1 / span 2;
+           grid-row: 1 / span 2;
+       }
+       .grid-item2 {
+
+       }
+       .grid-item3 {
+
+       }
+       .grid-item4 {
+
+       }
+       .grid-item5 {
+
+       }
+       div img {
+           width: 40%;
+           display: flex;
+       }
+   </style>
+  </head>
+  <body>
+    <script>
+       document.write('<h1>Devices Page</h1>'+Date()+' <br>');
+       setTimeout(function(){
+         location.reload(1);
+       },5000);
+   </script>
+   <br>
+    <table border="2">
+      <thead>
+        <th>Table1</th>
+        <th>Table2</th>
+      </thead>
+      <tr>
+        <td>
+          {% if viewdevicesdata %}
+              <main class="grid-container">
+                {% for dev in viewdevicesdata %}
+                  {% if dev.name|slice:":3" == "iot" %}
+                    <div class="grid-items">{{dev.name}} | {{dev.datetime}}<img src="{% static 'Photon.jpg' %}" alt="image not found" class="center" title={{dev.name}}></div>
+                  {% else %}
+                    <div class="grid-items">{{dev.name}} | {{dev.datetime}}<img src="{% static 'm5stickCplus.jpg' %}" alt="image not found" class="center" title={{dev.name}}></div>
+                  {% endif %}
+                {% endfor %}
+              </main>
+          {% else %}
+              <p>No Data to Display</p>
+          {% endif %}
+        </td>
+        <td>
+          {% if viewdeviceconndata %}
+            <table border="1">
+              <thead>
+                <th>DeviceName</th>
+                <th>Date </th>
+                <th>Status</th>
+              </thead>
+              {% for devconn in viewdeviceconndata %}
+              <tr>
+                <td>{{devconn.name}}</td>
+                <td>{{devconn.datetime}}</td>
+                <td>{{devconn.status}}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          {% else %}
+              <p>No Data to Display</p>
+          {% endif %}
+        </td>
+      </tr>
+  </table>
+  </body>
+</html>
