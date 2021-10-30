@@ -5,14 +5,20 @@
     <meta charset="utf-8">
     <title>IOT APP</title>
     <link rel="stylesheet" href="{% static 'css/basestyle.css' %}">
+    <script>
+       document.write('<h1>Devices Page</h1>'+Date()+' <br>');
+       setTimeout(function(){
+         location.reload(1);
+       },5000);
+   </script>
   </head>
   <body>
-    <h1>Hello World</h1>
+    <br>
     <table border="1" style="border-collapse: collapse; border: 2px solid black;">
       <tr>
       <thead>
-        <th>Column 1</th>
-        <th>Column 2</th>
+        <th>Connected Devices</th>
+        <th>Devices Connection Record Logs</th>
       </thead>
       </tr>
       <tr>
